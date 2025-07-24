@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
+import {addItem} from './CartSlice';
+import {useDispatch} from "react-redux";
+
 function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
@@ -254,6 +257,8 @@ function ProductList({ onHomeClick }) {
     };
 
     // These were added for task 1.
+    const dispatch = useDispatch();
+
     const [addedToCart, setAddedToCart] = useState({});
 
     const handleAddToCart = (product) => {
@@ -262,6 +267,7 @@ function ProductList({ onHomeClick }) {
         ...prevState, // Spread the previous state to retain existing entries
         [product.name]: true, // Set the current product's name as a key with value 'true' to mark it as added
       }));
+      alert("HELLO WORLD!");
     };
 
     return (
