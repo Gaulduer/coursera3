@@ -16,9 +16,8 @@ const CartItem = ({ onContinueShopping }) => {
    
   };
 
-
-
   const handleIncrement = (item) => {
+    
   };
 
   const handleDecrement = (item) => {
