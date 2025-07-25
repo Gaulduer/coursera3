@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 export const CartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [], // Initialize items as an empty array
+    items: [], // Initialize items as an empty array.
+    addedToCart: {} // Intialize added to cart as an empty dictionary.
   },
   reducers: {
     addItem: (state, action) => {
@@ -16,10 +17,12 @@ export const CartSlice = createSlice({
         } else {
             // If item does not exist, add it to the cart with quantity 1
             state.items.push({ name, image, cost, quantity: 1 });
+            state.addedToCart[name] = true; // The item has just been added to the cart, so addedToCart sets the value under its name to true.
         }
     },
     removeItem: (state, action) => {
         state.items = state.items.filter(item => item.name !== action.payload);
+        delete state.addedToCart[action.payload]; // Removing its entry from added to cart, because it no longer is in the cart.
     },
     updateQuantity: (state, action) => {
         const { name, quantity } = action.payload; // Destructure the product name and new quantity from the action payload
